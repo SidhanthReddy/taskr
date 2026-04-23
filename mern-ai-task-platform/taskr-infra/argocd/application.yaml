@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: taskr
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/YOUR_USERNAME/taskr-infra
+    targetRevision: HEAD
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: taskr
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

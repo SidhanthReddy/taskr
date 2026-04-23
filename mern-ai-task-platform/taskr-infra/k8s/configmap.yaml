@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskr-config
+  namespace: taskr
+data:
+  MONGO_URI: mongodb://mongo:27017/mern_ai
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"

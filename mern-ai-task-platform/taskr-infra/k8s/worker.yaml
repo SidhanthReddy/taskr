@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  namespace: taskr
+spec:
+  replicas: 3   # scalable workers
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - name: worker
+          image: sidhanth2020/taskr-worker:latest
+          envFrom:
+            - configMapRef:
+                name: taskr-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "150m"
+            limits:
+              memory: "256Mi"
+              cpu: "300m"
